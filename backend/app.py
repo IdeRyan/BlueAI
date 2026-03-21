@@ -71,7 +71,39 @@ def register_sensor():
             'error': str(e),
             'status': 'error'
         }), 500
-
+@app.route('/api/measurements', methods=['GET'])
+def get_measurements():
+    try:
+        # Récupérer les dernières mesures (limite 20 par défaut)
+        limit = request.args.get('limit', 20, type=int)
+        
+        measurements = Measurement.query.order_by(
+            Measurement.timestamp.desc()
+        ).limit(limit).all()
+        
+        # Convertir en dictionnaire
+        result = []
+        for m in measurements:
+            result.append({
+                'id': m.id,
+                'sensor_id': m.sensor_id,
+                'value': m.value,
+                'pump_on': getattr(m, 'pump_on', None),  # Si vous avez ce champ
+                'timestamp': m.timestamp.isoformat() if m.timestamp else None
+            })
+        
+        return jsonify({
+            'measurements': result,
+            'count': len(result),
+            'status': 'success'
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'status': 'error'
+        }), 500
+        
 @app.route('/api/measurements', methods=['POST'])
 def add_measurement():
     try:
