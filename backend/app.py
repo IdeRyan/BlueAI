@@ -124,7 +124,8 @@ def add_measurement():
         # 1. Save measurement
         measurement = Measurement(
             sensor_id=data['sensor_id'],
-            value=data['value']
+            value=data['value'],
+            pump_on=data['pump_on']
         )
         db.session.add(measurement)
         db.session.commit()
