@@ -1,0 +1,86 @@
+.dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* --- Top Row: HG, HC1, HC2, HD --- */
+.top-widgets {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.card {
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.kpi-dark { background:#0f172a; color:#f8fafc; }
+.kpi-blue { background:#3b82f6; color:white; }
+.kpi-white { background:white; color:#1e293b; border:1px solid #cbd5e1; }
+.kpi-red { background:#ef4444; color:white; }
+
+.card-label { font-size:10px; font-weight:700; opacity:0.8; margin-bottom:5px; display:block; }
+.card-value { font-size:28px; font-weight:800; margin-bottom:3px; }
+.card-desc { font-size:11px; opacity:0.85; line-height:1.4; }
+
+/* --- Middle Row --- */
+.middle-row {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 20px;
+}
+
+.main-map-card {
+  background:white;
+  border-radius:12px;
+  box-shadow:0 6px 12px rgba(0,0,0,0.1);
+  height:450px;
+  overflow:hidden;
+}
+
+.map-info { padding:12px 20px; font-weight:700; font-size:12px; border-bottom:1px solid #e2e8f0; }
+
+.map-view { position: relative; height:100%; width:100%; }
+
+/* Right Column */
+.right-column { display:flex; flex-direction:column; gap:20px; }
+
+.side-card {
+  background:#0f172a; color:white; padding:15px; border-radius:12px;
+}
+
+.side-card h4 { font-size:13px; color:#60a5fa; margin-bottom:5px; text-transform:uppercase; }
+
+.log-list { 
+  list-style:none;
+  padding:0; 
+  margin-top:10px; 
+  max-height: 150px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+.log-list li { font-size:11px; padding:5px 0; border-bottom:1px solid #1e293b; color:#94a3b8; }
+.time { color:#3b82f6; font-weight:bold; }
+
+
+
+
+
+.resolve-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  margin-top: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.resolve-button:hover {
+  background-color: #45a049;
+}

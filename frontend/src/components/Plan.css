@@ -1,0 +1,42 @@
+.pipe-line {
+    stroke: rgb(33, 33, 226);
+    stroke-width: 3;
+    filter: drop-shadow(0 0 12px #0534ef);
+}
+
+.carte{
+    background-color: #b6c6e0;
+    border-radius: 20px;
+}
+
+.sensor-box {
+  stroke: red;
+  stroke-width: 2;
+  fill: none;
+}
+
+.map-label {
+  font-size: 12px;
+  fill: #1e293b;
+  font-weight: bold;
+}
+
+.voyant-normal{
+    fill: green;
+}
+.voyant-warning {
+    animation: clignotte 0.5s steps(1, start) infinite;
+}
+.voyant-critical {
+    animation: clignotte2 0.5s steps(1, start) infinite;
+}
+@keyframes clignotte {
+    0% { fill: #c57e22; }   
+    50% { fill: #f90909; }  
+    100% { fill: #c57e22; } 
+}
+@keyframes clignotte2{
+    0% { fill: #c5ba22; }   
+    50% { fill: #f90909; }  
+    100% { fill: #c5ba22; } 
+}
