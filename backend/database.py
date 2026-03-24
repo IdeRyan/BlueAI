@@ -45,6 +45,7 @@ class Measurement(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     sensor_id = db.Column(db.String(50), db.ForeignKey('sensors.id'), nullable=False)
     value = db.Column(db.Float, nullable=False)
+    pump_on = db.Column(db.Boolean,nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.now)
     
 
