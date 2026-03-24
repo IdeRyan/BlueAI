@@ -12,7 +12,7 @@ Real-time leak detection system for water distribution networks using an expert 
 ### Installation
 ```bash
 # Clone and setup
-git clone https://github.com/your-org/blueai.git
+git clone https://github.com/IdeRyan/blueai.git
 cd blueai/backend
 
 # Virtual environment
