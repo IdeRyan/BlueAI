@@ -1,7 +1,7 @@
 # BlueAI - Leak Detection System
 
 ## Overview
-Real-time leak detection system for water distribution networks using an expert system and REST API.
+Real-time leak detection system for water distribution networks using machine learning specifically supervised learning.
 
 ## Quick Start
 
