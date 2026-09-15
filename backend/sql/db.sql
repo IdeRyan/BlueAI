@@ -1,36 +1,23 @@
-CREATE TABLE IF NOT EXISTS sensors (
-    id VARCHAR(50) PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    type VARCHAR(20) NOT NULL,
-    location VARCHAR(100),
-    active BOOLEAN DEFAULT TRUE,
-    unit VARCHAR(10),
-    description TEXT
+CREATE TABLE IF NOT EXISTS measurements(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    flow1 REAL NOT NULL,
+    flow2 REAL NOT NULL,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS measurements (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    sensor_id VARCHAR(50) NOT NULL,
-    value FLOAT NOT NULL,
+CREATE TABLE IF NOT EXISTS predictions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    measurement_id INTEGER NOT NULL,
+    label INTEGER NOT NULL,
+    confidence REAL NOT NULL,
+    flow1_avg REAL NOT NULL,
+    flow2_avg REAL NOT NULL,
+    flow_diff REAL NOT NULL,
+    flow_ratio REAL NOT NULL,
+    flow2_var REAL NOT NULL,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (sensor_id) REFERENCES sensors(id),
-    INDEX idx_sensor (sensor_id),
-    INDEX idx_timestamp (timestamp)
+    FOREIGN KEY (measurement_id) REFERENCES measurements(id)
 );
 
-CREATE TABLE IF NOT EXISTS alerts (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    sensor_id VARCHAR(50) NOT NULL,
-    alert_type VARCHAR(50) NOT NULL,
-    severity VARCHAR(20) DEFAULT 'warning',
-    message TEXT,
-    value_at_alert FLOAT,
-    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-    resolved BOOLEAN DEFAULT FALSE,
-    resolved_at DATETIME,
-    resolved_by VARCHAR(50),
-    FOREIGN KEY (sensor_id) REFERENCES sensors(id),
-    INDEX idx_sensor (sensor_id),
-    INDEX idx_resolved (resolved),
-    INDEX idx_timestamp (timestamp)
-);
+CREATE INDEX IF NOT EXISTS measurements_id_index ON measurements(id);
+CREATE INDEX IF NOT EXISTS predictions_id_index ON predictions(id);
