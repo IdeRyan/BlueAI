@@ -46,12 +46,12 @@ def get_latest_prediction():
 def get_history(n):
     sql = """
         SELECT * FROM (
-        SELECT p.*, m.flow1, m.flow2
+        SELECT p.id AS pred_id p.*, m.flow1, m.flow2
         FROM predictions p
         JOIN measurements m ON m.id = p.measurement_id
         ORDER BY p.id DESC
         LIMIT ?
-        ) ORDER BY id ASC;
+        ) ORDER BY pred_id ASC;
     """
     cursor = connection.execute(sql, (n,))
     return cursor.fetchall()
