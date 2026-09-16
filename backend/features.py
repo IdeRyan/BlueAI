@@ -13,7 +13,7 @@ def compute_feature(last_5:list):
     features.append((flow1_avg - flow2_avg))
 
     # flow_ratio
-    flow_ratio = flow2_avg / flow1_avg if flow1_avg > 0 else 0
+    flow_ratio = flow2_avg / flow1_avg if flow1_avg > 0.01 else 0
     features.append(flow_ratio)
 
     # flow2_var
