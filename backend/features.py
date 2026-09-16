@@ -14,6 +14,7 @@ def compute_feature(last_5:list):
 
     # flow_ratio
     flow_ratio = flow2_avg / flow1_avg if flow1_avg > 0 else 0
+    features.append(flow_ratio)
 
     # flow2_var
     features.append(np.var([measure[2] for measure in last_5]))
