@@ -25,7 +25,8 @@ def add_measurement():
     features = compute_feature(last_measurements)
 
     # Verify if the pump is off then return directly a specific class
-    if features[0] < 0.1:  # flow1_avg < 0.1
+    if features[0] < 0.1:
+        insert_prediction(measurement_id, -1, 1.0, *features)
         return jsonify({
             "status": "pump_off",
             "message": "Pump appears to be off",
