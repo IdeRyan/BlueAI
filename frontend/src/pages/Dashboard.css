@@ -84,3 +84,83 @@
 .resolve-button:hover {
   background-color: #45a049;
 }
+.kpi-gray {
+  background: #1e293b;
+  border-color: #475569;
+  opacity: 0.8;
+}
+
+/* ---------- Bandeau d'alerte ---------- */
+.alert-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  border-radius: 8px;
+  border-left: 4px solid;
+  margin-bottom: 8px;
+}
+
+.alert-banner--critical {
+  background: #450a0a;
+  border-color: #ef4444;
+  color: #fecaca;
+}
+
+.alert-banner--idle {
+  background: #1e293b;
+  border-color: #64748b;
+  color: #cbd5e1;
+}
+
+.alert-icon {
+  font-size: 24px;
+}
+
+.alert-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.alert-content strong {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.alert-content span {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* ---------- KPI green ---------- */
+.kpi-green {
+  background: #14532d;
+  border-color: #22c55e;
+}
+
+.unit {
+  font-size: 14px;
+  font-weight: 400;
+  color: #94a3b8;
+  margin-left: 4px;
+}
+
+/* ---------- Log list amélioré ---------- */
+.log-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.log-list .time {
+  flex-shrink: 0;
+}
+
+.log-list .conf {
+  color: #94a3b8;
+  font-size: 11px;
+  flex-shrink: 0;
+}

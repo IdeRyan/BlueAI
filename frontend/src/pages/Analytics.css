@@ -1,0 +1,96 @@
+.analytics-layout {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: #0f172a;
+  min-height: calc(100vh - 64px);
+}
+
+/* ---------- En-tête ---------- */
+.analytics-header h1 {
+  font-size: 24px;
+  color: #e2e8f0;
+  margin-bottom: 6px;
+}
+
+.analytics-header p {
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+/* ---------- Cartes de stats ---------- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+.stat-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stat-card--leak {
+  border-color: #ef4444;
+  background: #1e1b1b;
+}
+
+.stat-card--normal {
+  border-color: #22c55e;
+  background: #14241a;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+/* ---------- Sections de graphiques ---------- */
+.chart-section {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chart-section h2 {
+  font-size: 16px;
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+.chart-desc {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
