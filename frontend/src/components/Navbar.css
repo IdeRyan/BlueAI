@@ -133,3 +133,110 @@
   color: #64748b;
   margin: 5px 0;
 }
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ---------- Logo ---------- */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 180px;
+}
+
+.navbar-logo-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e2e8f0;
+  letter-spacing: 0.5px;
+}
+
+.logo-ai {
+  color: #3b82f6;
+}
+
+/* ---------- Navigation ---------- */
+.navbar-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-link {
+  padding: 8px 16px;
+  border-radius: 6px;
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.nav-link:hover {
+  color: #e2e8f0;
+  background: #334155;
+}
+
+.nav-link--active {
+  color: #e2e8f0;
+  background: #3b82f6;
+}
+
+.nav-link--active:hover {
+  background: #2563eb;
+}
+
+/* ---------- Statut système ---------- */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 180px;
+}
+
+.system-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #cbd5e1;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px #22c55e;
+  animation: pulse-status 2s infinite;
+}
+
+@keyframes pulse-status {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

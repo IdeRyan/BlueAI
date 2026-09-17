@@ -1,42 +1,238 @@
-.pipe-line {
-    stroke: rgb(33, 33, 226);
-    stroke-width: 3;
-    filter: drop-shadow(0 0 12px #0534ef);
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+.plan {
+  --encre: #0a1e28;
+  --papier: #102b38;
+  --trait: #2f5364;
+  --conduite: #8fbacd;
+  --eau: #3fc9e0;
+  --defaut: #e0703c;
+  --texte: #cfe2ea;
+  --attenue: #6f93a3;
+
+  margin: 0;
+  padding: 0;
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--encre);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
 }
 
-.carte{
-    background-color: #b6c6e0;
-    border-radius: 20px;
+.plan__sheet {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-.sensor-box {
-  stroke: red;
-  stroke-width: 2;
+/* ---------- Feuille ---------- */
+.plan__fond { fill: var(--encre); }
+.plan__quadrillage { color: var(--trait); opacity: 0.28; }
+.plan__cadre { fill: none; stroke: var(--trait); stroke-width: 1; }
+
+.plan__entete {
+  fill: var(--texte);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Repères et légendes ---------- */
+.plan__repere {
+  fill: var(--texte);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.plan__sous-repere {
+  fill: var(--attenue);
+  font-size: 9.5px;
+}
+
+/* ---------- Réservoir ---------- */
+.plan__cuve { fill: none; stroke: var(--conduite); stroke-width: 1.4; }
+.plan__cuve-eau { fill: var(--eau); opacity: 0.16; stroke: none; }
+
+/* ---------- Pompe ---------- */
+.plan__pompe {
+  fill: var(--papier);
+  stroke: var(--conduite);
+  stroke-width: 1.6;
+  transition: stroke 0.4s ease;
+}
+.plan__pompe.is-on { stroke: var(--eau); }
+
+.plan__rotor-pale {
   fill: none;
+  stroke: var(--attenue);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  transition: stroke 0.4s ease;
+}
+.plan__rotor.is-on .plan__rotor-pale { stroke: var(--eau); }
+
+.plan__rotor.is-on {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: plan-rotor 1.5s linear infinite;
 }
 
-.map-label {
-  font-size: 12px;
-  fill: #1e293b;
-  font-weight: bold;
+@keyframes plan-rotor {
+  to { transform: rotate(360deg); }
 }
 
-.voyant-normal{
-    fill: green;
+/* ---------- Conduites ---------- */
+.plan__conduite {
+  stroke: var(--conduite);
+  stroke-width: 7;
+  stroke-linecap: round;
+  opacity: 0.32;
 }
-.voyant-warning {
-    animation: clignotte 0.5s steps(1, start) infinite;
+
+.plan__conduite--surveille { opacity: 0.5; }
+
+.plan__flux {
+  stroke: var(--eau);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 5 13;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
-.voyant-critical {
-    animation: clignotte2 0.5s steps(1, start) infinite;
+
+.plan__flux.is-on {
+  opacity: 0.9;
+  animation: plan-flux var(--cycle, 2s) linear infinite;
 }
-@keyframes clignotte {
-    0% { fill: #c57e22; }   
-    50% { fill: #f90909; }  
-    100% { fill: #c57e22; } 
+
+@keyframes plan-flux {
+  to { stroke-dashoffset: -36; }
 }
-@keyframes clignotte2{
-    0% { fill: #c5ba22; }   
-    50% { fill: #f90909; }  
-    100% { fill: #c5ba22; } 
+
+/* ---------- Capteurs ---------- */
+.plan__capteur-corps {
+  fill: var(--papier);
+  stroke: var(--conduite);
+  stroke-width: 1.6;
+}
+
+.plan__capteur-axe { stroke: var(--conduite); stroke-width: 1; opacity: 0.6; }
+
+.plan__capteur-tag {
+  fill: var(--texte);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+.plan__mesure {
+  fill: var(--texte);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 19px;
+  font-variant-numeric: tabular-nums;
+}
+
+.plan__unite {
+  fill: var(--attenue);
+  font-size: 9.5px;
+  text-anchor: middle;
+}
+
+/* ---------- Sortie ---------- */
+.plan__sortie { fill: none; stroke: var(--conduite); stroke-width: 1.4; opacity: 0.8; }
+
+/* ---------- Ligne de cote ---------- */
+.plan__cote-attache { stroke: var(--trait); stroke-width: 1; }
+.plan__cote-ligne { stroke: var(--attenue); stroke-width: 1; }
+.plan__cote-pointe { fill: var(--attenue); }
+
+.plan__cote-texte {
+  fill: var(--attenue);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+.plan--leak .plan__cote-attache,
+.plan--leak .plan__cote-ligne { stroke: var(--defaut); }
+.plan--leak .plan__cote-pointe { fill: var(--defaut); }
+.plan--leak .plan__cote-texte { fill: var(--defaut); }
+
+.plan--leak .plan__conduite--surveille {
+  stroke: var(--defaut);
+  opacity: 0.75;
+}
+
+.plan--leak .plan__conduite--surveille + .plan__flux { stroke: var(--defaut); }
+
+/* ---------- Rupture ---------- */
+.plan__rupture-halo { fill: var(--defaut); opacity: 0.18; }
+.plan__rupture-trait {
+  fill: none;
+  stroke: var(--defaut);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.plan__goutte {
+  fill: var(--defaut);
+  animation: plan-goutte 1.1s cubic-bezier(0.45, 0, 0.75, 0.3) infinite;
+  animation-delay: calc(var(--i) * 0.28s);
+}
+
+@keyframes plan-goutte {
+  0%   { transform: translateY(0); opacity: 0; }
+  20%  { opacity: 0.95; }
+  100% { transform: translateY(44px); opacity: 0; }
+}
+
+.plan__flaque { fill: var(--defaut); opacity: 0.22; }
+
+.plan__rupture-texte {
+  fill: var(--defaut);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* ---------- Cartouche ---------- */
+.plan__cartouche-fond { fill: var(--papier); stroke: var(--trait); stroke-width: 1; }
+.plan__cartouche-trait { stroke: var(--trait); stroke-width: 1; }
+
+.plan__temoin { fill: var(--attenue); }
+.plan--normal .plan__temoin { fill: var(--eau); }
+.plan--leak .plan__temoin {
+  fill: var(--defaut);
+  animation: plan-temoin 1.4s ease-in-out infinite;
+}
+
+@keyframes plan-temoin {
+  50% { opacity: 0.25; }
+}
+
+.plan__cartouche-etat { fill: var(--texte); font-size: 11.5px; font-weight: 600; }
+.plan--leak .plan__cartouche-etat { fill: var(--defaut); }
+
+.plan__cartouche-heure,
+.plan__cartouche-cle {
+  fill: var(--attenue);
+  font-size: 9.5px;
+}
+
+.plan__cartouche-heure { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+
+.plan__cartouche-val {
+  fill: var(--texte);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Accessibilité ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .plan__flux.is-on,
+  .plan__rotor.is-on,
+  .plan__goutte,
+  .plan--leak .plan__temoin {
+    animation: none;
+  }
+  .plan__goutte { opacity: 0.8; }
 }
